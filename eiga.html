@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+    <title>HAL CINEMAS - 映画</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 414px;
+            width: 100%;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border: 1px solid #ccc;
+        }
+        .header {
+            background-color: white;
+            padding: 10px;
+            text-align: center;
+            border-bottom: 2px solid #000;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #000;
+            font-family: 'Luckiest Guy', cursive;
+        }
+        .tab-container {
+            display: flex;
+            width: 100%;
+        }
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 15px 0;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .tab.active {
+            background-color: #ff3b30;
+            color: white;
+        }
+        .tab.inactive {
+            background-color: #333;
+            color: white;
+        }
+        .filter-bar {
+            display: flex;
+            padding: 10px 5px;
+            overflow-x: auto;
+            gap: 5px;
+        }
+        .filter-button {
+            padding: 8px 20px;
+            border-radius: 20px;
+            white-space: nowrap;
+            border: 1px solid #ccc;
+            background-color: white;
+            font-size: 14px;
+        }
+        .filter-button.active {
+            background-color: #ff3b30;
+            color: white;
+            border: 1px solid #ff3b30;
+        }
+        .search-bar {
+            padding: 10px;
+        }
+        .search-input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .movie-container {
+            padding: 10px;
+            display: none;
+        }
+        .movie-container.active {
+            display: block;
+        }
+        .movie-card {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+        .movie-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .movie-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .movie-rating {
+            color: #ff3b30;
+            margin-bottom: 10px;
+        }
+        .reservation-button {
+            background-color: #ff3b30;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .reservation-button.inactive {
+            background-color: #cccccc;
+        }
+        .movie-details {
+            display: none;
+            padding: 15px;
+            background-color: #333;
+            color: white;
+        }
+        .movie-details.active {
+            display: block;
+        }
+        .back-button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        .detail-image {
+            width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+        }
+        .detail-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .detail-rating {
+            color: #ff3b30;
+            margin-bottom: 15px;
+        }
+        .detail-description {
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">HAL CINEMAS</div>
+        </div>
+        
+        <div class="tab-container">
+            <div class="tab active" id="current-tab">現在上映中の作品</div>
+            <div class="tab inactive" id="upcoming-tab">公開予定の作品</div>
+        </div>
+        
+        <div class="filter-bar">
+            <div class="filter-button active">すべて</div>
+            <div class="filter-button">アニメ</div>
+            <div class="filter-button">アクション</div>
+            <div class="filter-button">ドラマ</div>
+            <div class="filter-button">コメディ</div>
+            <div class="filter-button">ホラー</div>
+        </div>
+        
+        <div class="search-bar">
+            <input type="text" class="search-input" placeholder="作品名を入力...">
+        </div>
+        
+        <!-- 現在上映中の映画一覧 -->
+        <div class="movie-container active" id="current-movies">
+            <div class="movie-card" data-id="conan">
+                <img src="/api/placeholder/400/320" alt="名探偵コナン 紺青の拳" class="movie-image">
+                <div class="movie-title">名探偵コナン 紺青の拳</div>
+                <div class="movie-rating">★★★★★</div>
+                <button class="reservation-button">予約</button>
+            </div>
+            
+            <div class="movie-card" data-id="movie2">
+                <img src="/api/placeholder/400/320" alt="映画2" class="movie-image">
+                <div class="movie-title">ドライブ・マイ・カー</div>
+                <div class="movie-rating">★★★★☆</div>
+                <button class="reservation-button">予約</button>
+            </div>
+            
+            <div class="movie-card" data-id="movie3">
+                <img src="/api/placeholder/400/320" alt="映画3" class="movie-image">
+                <div class="movie-title">ワイルド・スピード</div>
+                <div class="movie-rating">★★★★☆</div>
+                <button class="reservation-button">予約</button>
+            </div>
+        </div>
+        
+        <!-- 公開予定の映画一覧 -->
+        <div class="movie-container" id="upcoming-movies">
+            <div class="movie-card" data-id="minecraft">
+                <img src="/api/placeholder/400/320" alt="マインクラフト・ザ・ムービー" class="movie-image">
+                <div class="movie-title">マインクラフト・ザ・ムービー</div>
+                <div class="movie-rating">公開予定</div>
+                <button class="reservation-button inactive">予約</button>
+            </div>
+            
+            <div class="movie-card" data-id="upcoming2">
+                <img src="/api/placeholder/400/320" alt="公開予定2" class="movie-image">
+                <div class="movie-title">デッド・プール3</div>
+                <div class="movie-rating">公開予定</div>
+                <button class="reservation-button inactive">予約</button>
+            </div>
+            
+            <div class="movie-card" data-id="upcoming3">
+                <img src="/api/placeholder/400/320" alt="公開予定3" class="movie-image">
+                <div class="movie-title">アバター3</div>
+                <div class="movie-rating">公開予定</div>
+                <button class="reservation-button inactive">予約</button>
+            </div>
+        </div>
+        
+        <!-- 映画詳細ページ（コナン） -->
+        <div class="movie-details" id="conan-details">
+            <button class="back-button">&lt; 戻る</button>
+            <img src="/api/placeholder/400/320" alt="名探偵コナン 紺青の拳" class="detail-image">
+            <div class="detail-title">名探偵コナン 紺青の拳</div>
+            <div class="detail-rating">★★★★★</div>
+            <div class="detail-description">
+                名探偵・八十島博士を訪ね、京都・大阪を訪れていたコナンと蘭。その大阪で、サファイア「紺青の拳」を展示する祝賀会が開かれていた。かつて八十島の亡き妻の愛したサファイアは、最近帰国した宝石コレクターの白鳥紺子が落札したものだった。
+                <br><br>
+                その夜、京都の神社から鬼が舞い降り、「紺青の拳」が盗まれた。事件現場に残された血痕から、関西の高校生探偵・服部平次が犯人だと思われてしまい、平次の婚約者・遠山和葉は彼の無実を証明するため奔走する。
+                <br><br>
+                世界最大のサファイアの謎を追う、怪盗キッドとの対決も見どころの1つ。
+            </div>
+            <button class="reservation-button">予約</button>
+        </div>
+        
+        <!-- 映画詳細ページ（マインクラフト） -->
+        <div class="movie-details" id="minecraft-details">
+            <button class="back-button">&lt; 戻る</button>
+            <img src="/api/placeholder/400/320" alt="マインクラフト・ザ・ムービー" class="detail-image">
+            <div class="detail-title">マインクラフト・ザ・ムービー</div>
+            <div class="detail-rating">公開予定</div>
+            <div class="detail-description">
+                世界中で大人気のゲーム「マインクラフト」が初めて映画化。ブロックで構成された世界で、主人公たちが冒険する物語。
+                <br><br>
+                見慣れた風景が突如としてマインクラフトの世界へと変わり、現実世界の若者グループが予期せぬ冒険へと巻き込まれていく。
+                <br><br>
+                クリーパーやゾンビなどのモンスターと戦いながら、仲間と協力して世界を救うために奮闘する姿を描く壮大なアドベンチャー。
+            </div>
+            <button class="reservation-button inactive">予約</button>
+        </div>
+    </div>
+
+    <script>
+        // タブ切り替え
+        document.getElementById('current-tab').addEventListener('click', function() {
+            this.classList.add('active');
+            this.classList.remove('inactive');
+            document.getElementById('upcoming-tab').classList.add('inactive');
+            document.getElementById('upcoming-tab').classList.remove('active');
+            
+            document.getElementById('current-movies').classList.add('active');
+            document.getElementById('upcoming-movies').classList.remove('active');
+            
+            hideAllDetails();
+        });
+        
+        document.getElementById('upcoming-tab').addEventListener('click', function() {
+            this.classList.add('active');
+            this.classList.remove('inactive');
+            document.getElementById('current-tab').classList.add('inactive');
+            document.getElementById('current-tab').classList.remove('active');
+            
+            document.getElementById('upcoming-movies').classList.add('active');
+            document.getElementById('current-movies').classList.remove('active');
+            
+            hideAllDetails();
+        });
+        
+        // フィルターボタン
+        const filterButtons = document.querySelectorAll('.filter-button');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // 映画詳細表示
+        const movieCards = document.querySelectorAll('.movie-card');
+        movieCards.forEach(card => {
+            card.addEventListener('click', function(e) {
+                if (!e.target.classList.contains('reservation-button')) {
+                    const movieId = this.getAttribute('data-id');
+                    showMovieDetails(movieId);
+                }
+            });
+        });
+        
+        // 戻るボタン
+        const backButtons = document.querySelectorAll('.back-button');
+        backButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                hideAllDetails();
+                if (document.getElementById('current-tab').classList.contains('active')) {
+                    document.getElementById('current-movies').classList.add('active');
+                } else {
+                    document.getElementById('upcoming-movies').classList.add('active');
+                }
+            });
+        });
+        
+        function showMovieDetails(movieId) {
+            hideAllMovieContainers();
+            hideAllDetails();
+            document.getElementById(movieId + '-details').classList.add('active');
+        }
+        
+        function hideAllDetails() {
+            const details = document.querySelectorAll('.movie-details');
+            details.forEach(detail => {
+                detail.classList.remove('active');
+            });
+        }
+        
+        function hideAllMovieContainers() {
+            document.getElementById('current-movies').classList.remove('active');
+            document.getElementById('upcoming-movies').classList.remove('active');
+        }
+    </script>
+</body>
+</html>
