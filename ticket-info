@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+    <title>HAL CINEMAS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1920px;
+            width: 100%;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 1920px) {
+            .container {
+                max-width: 1536px;
+            }
+        }
+        .header {
+            background-color: #e0e0e0;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #000;
+            font-family: 'Luckiest Guy', cursive;
+        }
+        .login {
+            color: #ff69b4;
+            font-size: 14px;
+        }
+
+        .ticket-section {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .ticket-section h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .ticket-table {
+            width: 80%;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+
+        .ticket-table td {
+            padding: 12px 8px;
+            border-bottom: 1px solid #ccc;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .btn {
+            padding: 4px 12px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            margin: 0 2px;
+            cursor: pointer;
+        }
+
+        .plus {
+            background-color: #f66;
+            color: white;
+        }
+
+        .minus {
+            background-color: #666;
+            color: white;
+        }
+
+        .reserve-button-wrapper {
+            margin-top: 40px;
+        }
+
+        .reserve-button {
+            background-color: #33ff99;
+            border: none;
+            padding: 16px 40px;
+            font-size: 20px;
+            border-radius: 32px;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="logo">HAL CINEMAS</div>
+        <div class="login">ログインはここから</div>
+    </div>
+
+    <div class="ticket-section">
+        <h2>チケット詳細</h2>
+        <table class="ticket-table">
+            <tr>
+                <td>一般</td>
+                <td>1800円</td>
+                <td><span class="ticket-count" data-index="0">0枚</span></td>
+                <td>
+                    <button class="btn plus" data-index="0">＋</button>
+                    <button class="btn minus" data-index="0">－</button>
+                </td>
+            </tr>
+            <tr>
+                <td>大学生</td>
+                <td>1600円</td>
+                <td><span class="ticket-count" data-index="1">0枚</span></td>
+                <td>
+                    <button class="btn plus" data-index="1">＋</button>
+                    <button class="btn minus" data-index="1">－</button>
+                </td>
+            </tr>
+            <tr>
+                <td>中学、高校</td>
+                <td>1400円</td>
+                <td><span class="ticket-count" data-index="2">0枚</span></td>
+                <td>
+                    <button class="btn plus" data-index="2">＋</button>
+                    <button class="btn minus" data-index="2">－</button>
+                </td>
+            </tr>
+            <tr>
+                <td>小学、幼児</td>
+                <td>1000円</td>
+                <td><span class="ticket-count" data-index="3">0枚</span></td>
+                <td>
+                    <button class="btn plus" data-index="3">＋</button>
+                    <button class="btn minus" data-index="3">－</button>
+                </td>
+            </tr>
+        </table>
+
+        <div class="reserve-button-wrapper">
+            <button class="reserve-button">座席予約画面へ</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const counts = [0, 0, 0, 0]; // 各チケットの枚数
+    const countSpans = document.querySelectorAll('.ticket-count');
+
+    document.querySelectorAll('.plus').forEach(button => {
+        button.addEventListener('click', () => {
+            const index = parseInt(button.dataset.index);
+            counts[index]++;
+            countSpans[index].textContent = counts[index] + '枚';
+        });
+    });
+
+    document.querySelectorAll('.minus').forEach(button => {
+        button.addEventListener('click', () => {
+            const index = parseInt(button.dataset.index);
+            if (counts[index] > 0) {
+                counts[index]--;
+                countSpans[index].textContent = counts[index] + '枚';
+            }
+        });
+    });
+</script>
+</body>
+</html>
