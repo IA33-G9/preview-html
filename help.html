@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAL CINEMAS - ヘルプ・ガイド</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f5f5f5;
+            min-height: 100vh;
+        }
+        
+        .panel {
+            width: 920px;
+            height: 1080px;
+            background-color: white;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 0 5px #999;
+            padding: 0;
+            position: relative;
+            overflow-y: auto; /* スクロール可能にする */
+        }
+        
+        @media (max-width: 1366px) {
+            .panel {
+                width: 1366px;
+                height: 768px;
+            }
+        }
+        
+        .header {
+            padding: 30px 0;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+        
+        h1 {
+            font-size: 46px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+        
+        .subtitle {
+            font-size: 28px;
+            color: #333;
+            margin: 30px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .subtitle::before, .subtitle::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 30%;
+            height: 2px;
+            background-color: #ccc;
+        }
+        
+        .subtitle::before {
+            left: 100px;
+        }
+        
+        .subtitle::after {
+            right: 100px;
+        }
+        
+        .faq-list {
+            padding: 10px 20px;
+        }
+        
+        .faq-item {
+            margin-bottom: 10px;
+        }
+        
+        .faq-question {
+            display: block;
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: white;
+            text-align: left;
+            font-size: 14px;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .dropdown-arrow {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .faq-answer {
+            display: none;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 5px;
+            background-color: white;
+        }
+        
+        .faq-answer.show {
+            display: block;
+        }
+        
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .price-table tr {
+            border-bottom: 1px solid #eee;
+        }
+        
+        .price-table tr:last-child {
+            border-bottom: none;
+        }
+        
+        .price-table td {
+            padding: 8px 5px;
+        }
+        
+        .price-table td:last-child {
+            text-align: right;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="panel">
+        <div class="header">
+            <h1>HAL CINEMAS</h1>
+            <div class="subtitle">ヘルプ・ガイド</div>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item">
+                <button class="faq-question" id="price-question">
+                    Q. この映画館の料金は？<span class="dropdown-arrow">▼</span>
+                </button>
+                <div class="faq-answer" id="price-answer">
+                    <table class="price-table">
+                        <tr>
+                            <td>一般</td>
+                            <td>1800円</td>
+                        </tr>
+                        <tr>
+                            <td>大学生</td>
+                            <td>1600円</td>
+                        </tr>
+                        <tr>
+                            <td>中学、高校</td>
+                            <td>1400円</td>
+                        </tr>
+                        <tr>
+                            <td>小学、幼児</td>
+                            <td>1000円</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    Q. 劇場はどんな感じ？<span class="dropdown-arrow">▼</span>
+                </button>
+                <div class="faq-answer">
+                    当劇場は最新の音響・映像設備を完備しており、快適な鑑賞環境をご提供しています。全席指定席で、ゆったりとした座席間隔を確保しています。
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    Q.<span class="dropdown-arrow">▼</span>
+                </button>
+                <div class="faq-answer">
+                    回答内容がここに表示されます。
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    Q.<span class="dropdown-arrow">▼</span>
+                </button>
+                <div class="faq-answer">
+                    回答内容がここに表示されます。
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    Q.<span class="dropdown-arrow">▼</span>
+                </button>
+                <div class="faq-answer">
+                    回答内容がここに表示されます。
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    Q.<span class="dropdown-arrow">▼</span>
+                </button>
+                <div class="faq-answer">
+                    回答内容がここに表示されます。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add event listeners for dropdowns
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                // First close all other open dropdowns
+                document.querySelectorAll('.faq-answer.show').forEach(answer => {
+                    if (answer !== this.nextElementSibling) {
+                        answer.classList.remove('show');
+                    }
+                });
+                
+                // Toggle current dropdown
+                const answer = this.nextElementSibling;
+                answer.classList.toggle('show');
+            });
+        });
+        
+        // 最初は全てのプルダウンを閉じた状態にする
+        // showPriceAnswer関数は削除
+    </script>
+</body>
+</html>
