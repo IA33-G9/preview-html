@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+    <title>HAL CINEMAS - マインクラフト・ザ・ムービー</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 414px;
+            width: 100%;
+            margin: 0 auto;
+            background-color: #333;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border: 1px solid #ccc;
+            color: white;
+        }
+        .header {
+            background-color: white;
+            padding: 10px;
+            text-align: center;
+            border-bottom: 2px solid #000;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #000;
+            font-family: 'Luckiest Guy', cursive;
+        }
+        .movie-details {
+            padding: 15px;
+        }
+        .back-button {
+            background-color: transparent;
+            color: white;
+            border: none;
+            padding: 10px 0;
+            margin-bottom: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .detail-image {
+            width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+        }
+        .detail-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        .detail-rating {
+            color: #ff3b30;
+            margin-bottom: 15px;
+        }
+        .detail-description {
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .reservation-button {
+            background-color: #cccccc;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">HAL CINEMAS</div>
+        </div>
+        
+        <div class="movie-details">
+            <a href="eiga.html" class="back-button">&lt; 戻る</a>
+            <img src="/api/placeholder/400/320" alt="マインクラフト・ザ・ムービー" class="detail-image">
+            <div class="detail-title">マインクラフト・ザ・ムービー</div>
+            <div class="detail-rating">公開予定</div>
+            <div class="detail-description">
+                世界中で大人気のゲーム「マインクラフト」が初めて映画化。ブロックで構成された世界で、主人公たちが冒険する物語。
+                <br><br>
+                見慣れた風景が突如としてマインクラフトの世界へと変わり、現実世界の若者グループが予期せぬ冒険へと巻き込まれていく。
+                <br><br>
+                クリーパーやゾンビなどのモンスターと戦いながら、仲間と協力して世界を救うために奮闘する姿を描く壮大なアドベンチャー。
+            </div>
+            <span class="reservation-button">予約</span>
+        </div>
+    </div>
+</body>
+</html>
