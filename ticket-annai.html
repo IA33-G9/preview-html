@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HAL CINEMAS チケット購入</title>
+  <style>
+    body {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      margin: 0;
+      background-color: #f2f2f2;
+      color: #333;
+    }
+
+    header {
+      background-color: white;
+      color: black;
+      padding: 1rem 2rem;
+      text-align: center;
+      border-bottom: 4px solid black;
+      font-weight: bold;
+      font-size: 1.8rem;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 2rem auto;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .movie-block {
+      border-bottom: 1px solid #ccc;
+    }
+
+    .movie-header {
+      display: flex;
+      flex-direction: row;
+      padding: 1rem;
+    }
+
+    .movie-poster {
+      width: 200px;
+      height: auto;
+      margin-right: 1rem;
+    }
+
+    .movie-details {
+      flex: 1;
+    }
+
+    .movie-details h2 {
+      margin-top: 0;
+    }
+
+    .form-group {
+      margin: 0.5rem 0;
+    }
+
+    .custom-select-wrapper {
+      position: relative;
+      width: 220px;
+      margin-top: 0.3rem;
+    }
+
+    .custom-select {
+      background-color: white;
+      border: 2px solid #ccc;
+      border-radius: 6px;
+      cursor: pointer;
+      padding: 0.5rem 0.8rem;
+      transition: border-color 0.3s ease;
+    }
+
+    .custom-select:hover {
+      border-color: #e60012;
+    }
+
+    .custom-options {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      max-height: 0;
+      overflow: hidden;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-top: none;
+      border-radius: 0 0 6px 6px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: max-height 0.4s ease;
+      z-index: 100;
+    }
+
+    .custom-select-wrapper.open .custom-options {
+      max-height: 200px;
+    }
+
+    .custom-option {
+      padding: 0.6rem 0.8rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .custom-option:hover {
+      background-color: #f0f0f0;
+    }
+
+    .purchase-section {
+      padding: 1rem;
+      text-align: right;
+    }
+
+    .btn {
+      background-color: #e60012;
+      color: white;
+      padding: 0.6rem 1.5rem;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #b0000e;
+    }
+
+    @media (max-width: 768px) {
+      .movie-header {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .movie-poster {
+        width: 100%;
+        margin: 0;
+      }
+
+      .custom-select-wrapper {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  HAL CINEMAS
+</header>
+
+<div class="container">
+
+  <!-- 映画1 -->
+  <div class="movie-block">
+    <div class="movie-header">
+      <img src="godzilla.jpg" alt="ゴジラ-1.0" class="movie-poster">
+      <div class="movie-details">
+        <h2>ゴジラ-1.0</h2>
+
+        <div class="form-group">
+          <label>劇場：</label>
+          <div class="custom-select-wrapper">
+            <div class="custom-select">劇場を選んでください</div>
+            <div class="custom-options">
+              <div class="custom-option">HALシネマズ新宿</div>
+              <div class="custom-option">HALシネマズ日比谷</div>
+              <div class="custom-option">HALシネマズ梅田</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>日付：</label>
+          <div class="custom-select-wrapper">
+            <div class="custom-select">日付を選んでください</div>
+            <div class="custom-options">
+              <div class="custom-option">2025年6月15日</div>
+              <div class="custom-option">2025年6月16日</div>
+              <div class="custom-option">2025年6月17日</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>時間：</label>
+          <div class="custom-select-wrapper">
+            <div class="custom-select">時間を選んでください</div>
+            <div class="custom-options">
+              <div class="custom-option">10:00～12:30</div>
+              <div class="custom-option">14:00～16:30</div>
+              <div class="custom-option">18:00～20:30</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="purchase-section">
+      <button class="btn">購入手続きへ進む</button>
+    </div>
+  </div>
+
+  <!-- 映画2 -->
+  <div class="movie-block">
+    <div class="movie-header">
+      <img src="kimi_no_na_wa.jpg" alt="君の名は。" class="movie-poster">
+      <div class="movie-details">
+        <h2>君の名は。</h2>
+
+        <div class="form-group">
+          <label>劇場：</label>
+          <div class="custom-select-wrapper">
+            <div class="custom-select">劇場を選んでください</div>
+            <div class="custom-options">
+              <div class="custom-option">HALシネマズ新宿</div>
+              <div class="custom-option">HALシネマズ渋谷</div>
+              <div class="custom-option">HALシネマズ池袋</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>日付：</label>
+          <div class="custom-select-wrapper">
+            <div class="custom-select">日付を選んでください</div>
+            <div class="custom-options">
+              <div class="custom-option">2025年6月15日</div>
+              <div class="custom-option">2025年6月16日</div>
+              <div class="custom-option">2025年6月17日</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>時間：</label>
+          <div class="custom-select-wrapper">
+            <div class="custom-select">時間を選んでください</div>
+            <div class="custom-options">
+              <div class="custom-option">09:30～11:30</div>
+              <div class="custom-option">13:00～15:00</div>
+              <div class="custom-option">17:00～19:00</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="purchase-section">
+      <button class="btn">購入手続きへ進む</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  document.querySelectorAll('.custom-select-wrapper').forEach(wrapper => {
+    const select = wrapper.querySelector('.custom-select');
+    const options = wrapper.querySelector('.custom-options');
+
+    select.addEventListener('click', () => {
+      // 他を閉じる
+      document.querySelectorAll('.custom-select-wrapper').forEach(w => {
+        if (w !== wrapper) w.classList.remove('open');
+      });
+      wrapper.classList.toggle('open');
+    });
+
+    options.querySelectorAll('.custom-option').forEach(option => {
+      option.addEventListener('click', () => {
+        select.textContent = option.textContent;
+        wrapper.classList.remove('open');
+      });
+    });
+
+    // 外クリックで閉じる
+    document.addEventListener('click', e => {
+      if (!wrapper.contains(e.target)) {
+        wrapper.classList.remove('open');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
