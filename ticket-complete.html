@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+  <title>HAL CINEMAS</title>
+  <style>
+
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+    }
+    .container {
+        max-width: 1920px;
+        width: 100%;
+        margin: 0 auto;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    @media (max-width: 1920px) {
+        .container {
+            max-width: 1536px;
+        }
+    }
+    .header {
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 4px solid black;
+    }
+    .logo {
+        font-size: 28px;
+        color: #000;
+        font-family: 'Luckiest Guy', cursive;
+    }
+    .login {
+        color: #ff69b4;
+        font-size: 14px;
+    }
+
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: start;
+      padding: 30px 20px;
+    }
+
+    .complete-title {
+      font-weight: bold;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .complete-message {
+      font-size: 18px;
+      margin-bottom: 40px;
+    }
+
+    .cancel-link {
+      color: red;
+      font-size: 14px;
+      margin-bottom: 40px;
+      text-decoration: none;
+    }
+
+    .top-button {
+      display: inline-block;
+      padding: 10px 30px;
+      background-color: black;
+      color: white;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="logo">HAL CINEMAS</div>
+    <div class="login">ログインはここから</div>
+  </div>
+
+  <div class="main">
+    <h2 class="complete-title">予約が完了しました。</h2>
+    <p class="complete-message">ご来場をお待ちしております！</p>
+    <a href="#" class="cancel-link">キャンセルのご案内</a>
+    <a href="#" class="top-button">トップへ</a>
+  </div>
+
+</div>
+</body>
+</html>
