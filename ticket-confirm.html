@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+  <title>HAL CINEMAS</title>
+  <style>
+
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+    }
+    .container {
+        max-width: 1920px;
+        width: 100%;
+        margin: 0 auto;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    @media (max-width: 1920px) {
+        .container {
+            max-width: 1536px;
+        }
+    }
+    .header {
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 4px solid black;
+    }
+    .logo {
+        font-size: 28px;
+        color: #000;
+        font-family: 'Luckiest Guy', cursive;
+    }
+    .login {
+        color: #ff69b4;
+        font-size: 14px;
+    }
+
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: start;
+      padding: 30px 20px;
+    }
+
+    h2 {
+      font-size: 32px;
+      margin-bottom: 30px;
+    }
+
+    .summary {
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+      padding: 20px 0;
+      width: 400px;
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    .summary div {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+
+    select {
+      width: 300px;
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 40px;
+    }
+
+    .price {
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 40px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
+    }
+
+    .confirm-btn {
+      background-color: red;
+      color: white;
+      font-size: 20px;
+      padding: 15px 60px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+    }
+
+    .confirm-btn:hover {
+      opacity: 0.85;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+<!--  <div class="header">HAL CINEMAS</div>-->
+  <div class="header">
+    <div class="logo">HAL CINEMAS</div>
+    <div class="login">ログインはここから</div>
+  </div>
+
+  <div class="main">
+    <h2>予約確認</h2>
+
+    <div class="summary">
+      <div><span>一般</span><span>1枚  1800円</span></div>
+      <div><span>大学生</span><span>5枚  8000円</span></div>
+    </div>
+
+    <label for="seat">選択した席</label>
+    <select id="seat">
+      <option value="">----</option>
+      <option value="A1">D1</option>
+      <option value="A2">D2</option>
+      <option value="B1">D3</option>
+      <option value="B2">D4</option>
+      <option value="B2">D5</option>
+      <option value="B2">D6</option>
+    </select>
+
+    <div class="price">￥9800円</div>
+
+    <button class="confirm-btn">確定</button>
+  </div>
+</div>
+</body>
+</html>
