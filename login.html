@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+    <title>HAL CINEMAS</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        header h1 {
+            font-family: 'Luckiest Guy', cursive;
+            font-size: 2.5rem;
+            margin: 24px 0 8px 32px;
+            letter-spacing: 2px;
+        }
+        header {
+            border-bottom: 5px solid #222;
+            margin-bottom: 32px;
+        }
+        main {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+        .login-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+        .login-title-line {
+            flex: 1;
+            height: 2px;
+            background: #222;
+        }
+        .login-title-text {
+            margin: 0 16px;
+            font-size: 1.7rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .login-input {
+            padding: 16px 16px;
+            font-size: 1.1rem;
+            border: 2px solid #222;
+            border-radius: 16px;
+            outline: none;
+        }
+        .login-btn {
+            margin: 32px 0 0 0;
+            padding: 12px 0;
+            background: #181818;
+            color: #fff;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 28px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .login-btn:hover {
+            background: #333;
+        }
+        .register-link {
+            display: block;
+            margin: 32px auto 0 auto;
+            text-align: center;
+            color: #666;
+            text-decoration: underline;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>HAL CINEMAS</h1>
+    </header>
+
+    <main>
+        <div class="login-title">
+            <div class="login-title-line"></div>
+            <div class="login-title-text">ログイン</div>
+            <div class="login-title-line"></div>
+        </div>
+        <form class="login-form">
+            <input type="email" class="login-input" placeholder="メールアドレス" required>
+            <input type="password" class="login-input" placeholder="パスワード" required>
+            <button type="submit" class="login-btn">ログイン</button>
+        </form>
+        <a href="#" class="register-link">会員登録はこちら</a>
+    </main>
+
+</body>
+</html>
