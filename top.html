@@ -3,160 +3,520 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
     <title>HAL CINEMAS</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Noto Sans JP', Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f5f5f5;
+            min-height: 100vh;
         }
+        
         .container {
             max-width: 1920px;
             width: 100%;
             margin: 0 auto;
             background-color: white;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-top: 20px;
+            margin-bottom: 20px;
         }
         
         @media (max-width: 1920px) {
             .container {
                 max-width: 1536px;
+                margin: 10px;
             }
         }
+        
         .header {
             background-color: #e0e0e0;
-            padding: 10px 20px;
+            padding: 20px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid #ccc;
         }
+        
         .logo {
-            font-size: 24px;
+            font-size: 32px;
             font-weight: bold;
             color: #000;
             font-family: 'Luckiest Guy', cursive;
         }
-        .login {
-            color: #ff69b4;
-            font-size: 14px;
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
+        
+        .help-link, .login {
+            color: #333;
+            font-size: 14px;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            background: #f9f9f9;
+            transition: all 0.3s ease;
+            border: 1px solid #ddd;
+        }
+        
+        .help-link:hover, .login a:hover {
+            background: #eee;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .login a {
+            color: #ff69b4;
+            text-decoration: none;
+        }
+        
         .nav {
             display: flex;
             border-bottom: 1px solid #ccc;
         }
+        
         .nav-item {
             flex: 1;
             text-align: center;
-            padding: 15px 0;
+            padding: 20px 0;
             background-color: #e0e0e0;
             border-right: 1px solid #ccc;
+            position: relative;
+            transition: all 0.3s ease;
         }
+        
         .nav-item:last-child {
             border-right: none;
         }
+        
+        .nav-item a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+        }
+        
+        .nav-item:hover {
+            background-color: #d0d0d0;
+            transform: scale(1.02);
+        }
+        
         .ranking {
-            padding: 20px;
+            padding: 40px 20px;
             border-bottom: 1px solid #ccc;
         }
+        
         .ranking-title {
-            margin-bottom: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 28px;
+            font-weight: 700;
+            color: #333;
         }
+        
         .movie-list {
             display: flex;
             justify-content: space-between;
-            background-color: #f9f9f9;
-            padding: 20px;
-            position: relative;
+            gap: 20px;
             max-width: 1200px;
             margin: 0 auto;
+            background-color: #f9f9f9;
+            padding: 20px;
         }
+        
         .movie {
             width: 30%;
             position: relative;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            background: #fff;
         }
+        
+        .movie:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
         .movie img {
             width: 100%;
-            height: auto;
+            height: 400px;
+            object-fit: cover;
             display: block;
+            transition: transform 0.3s ease;
         }
+        
+        .movie:hover img {
+            transform: scale(1.05);
+        }
+        
         .crown {
             position: absolute;
-            top: -20px;
+            top: -15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 30px;
-            height: 30px;
-            text-align: center;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 24px;
+            z-index: 3;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            border: 3px solid #fff;
         }
+        
         .crown-1 {
-            color: gold;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
         }
+        
         .crown-2 {
-            color: silver;
+            background: linear-gradient(135deg, #c0c0c0, #e8e8e8);
         }
+        
         .crown-3 {
-            color: #cd7f32;
+            background: linear-gradient(135deg, #cd7f32, #e6a85c);
         }
+        
         .view-all {
             text-align: center;
-            padding: 10px 0;
+            padding: 15px 30px;
             background-color: #e0e0e0;
-            margin: 20px auto;
-            width: 150px;
+            margin: 30px auto;
+            width: 200px;
+            border-radius: 5px;
+            color: #333;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
         }
+        
+        .view-all:hover {
+            background-color: #d0d0d0;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .carousel-section {
+            padding: 40px 20px;
+            background-color: #f9f9f9;
+        }
+        
+        .carousel-title {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        
         .carousel {
             display: flex;
-            padding: 20px;
             position: relative;
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
+            overflow: hidden;
+            border-radius: 10px;
         }
+        
+        .carousel-container {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
         .carousel-item {
-            width: 33.333%;
-            padding: 0 5px;
+            min-width: 33.333%;
+            padding: 0 10px;
+            position: relative;
+            border-radius: 5px;
+            overflow: hidden;
+            transition: all 0.3s ease;
         }
+        
+        .carousel-item:hover {
+            transform: scale(1.05);
+        }
+        
         .carousel-item img {
             width: 100%;
-            height: auto;
+            height: 300px;
+            object-fit: cover;
             display: block;
+            transition: transform 0.3s ease;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
+        
+        .carousel-item:hover img {
+            transform: scale(1.05);
+        }
+        
         .carousel-nav {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background-color: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.6);
             color: white;
-            width: 30px;
-            height: 30px;
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            z-index: 10;
+            border: 2px solid rgba(255,255,255,0.3);
         }
+        
+        .carousel-nav:hover {
+            background: rgba(0,0,0,0.8);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
         .nav-prev {
-            left: 5px;
+            left: 20px;
         }
+        
         .nav-next {
-            right: 5px;
+            right: 20px;
         }
+        
         .carousel-dots {
             display: flex;
             justify-content: center;
-            padding: 10px 0;
+            padding: 20px 0;
+            gap: 10px;
         }
+        
         .dot {
-            width: 10px;
-            height: 10px;
-            background-color: #ccc;
+            width: 12px;
+            height: 12px;
+            background: #ccc;
             border-radius: 50%;
-            margin: 0 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
+        
         .dot.active {
-            background-color: #666;
+            background: #666;
+            transform: scale(1.2);
+        }
+        
+        .dot:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Help Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 2% auto;
+            padding: 0;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 920px;
+            height: 90vh;
+            max-height: 1080px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10;
+            color: #333;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.9);
+            transition: all 0.3s ease;
+        }
+        
+        .close:hover {
+            background: #f44336;
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .help-content {
+            height: 100%;
+            overflow-y: auto;
+            padding: 0;
+        }
+        
+        .help-header {
+            padding: 40px 0;
+            text-align: center;
+            background: linear-gradient(135deg, #e0e0e0 0%, #d0d0d0 100%);
+            color: #333;
+        }
+        
+        .help-header h1 {
+            font-size: 46px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-family: 'Luckiest Guy', cursive;
+        }
+        
+        .help-subtitle {
+            font-size: 28px;
+            color: #666;
+            margin: 20px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .faq-list {
+            padding: 20px 30px;
+        }
+        
+        .faq-item {
+            margin-bottom: 15px;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .faq-question {
+            display: block;
+            width: 100%;
+            padding: 20px;
+            border: none;
+            background: #e0e0e0;
+            color: #333;
+            text-align: left;
+            font-size: 16px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .faq-question:hover {
+            background: #d0d0d0;
+        }
+        
+        .dropdown-arrow {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-question.active .dropdown-arrow {
+            transform: translateY(-50%) rotate(180deg);
+        }
+        
+        .faq-answer {
+            display: none;
+            padding: 20px;
+            background-color: white;
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .faq-answer.show {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                max-height: 0;
+            }
+            to {
+                opacity: 1;
+                max-height: 200px;
+            }
+        }
+        
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .price-table tr {
+            border-bottom: 1px solid #eee;
+        }
+        
+        .price-table tr:last-child {
+            border-bottom: none;
+        }
+        
+        .price-table td {
+            padding: 15px;
+            background: #f9f9f9;
+        }
+        
+        .price-table td:last-child {
+            text-align: right;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .movie-list {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .movie {
+                width: 100%;
+            }
+            
+            .carousel-item {
+                min-width: 100%;
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .header-right {
+                gap: 10px;
+            }
         }
     </style>
 </head>
@@ -164,7 +524,10 @@
     <div class="container">
         <div class="header">
             <div class="logo">HAL CINEMAS</div>
-            <div class="login">ログインはここから</div>
+            <div class="header-right">
+                <div class="help-link" onclick="openHelpModal()">ヘルプ・ガイド</div>
+                <div class="login"><a href="login.html">ログインはここから</a></div>
+            </div>
         </div>
         
         <div class="nav">
@@ -179,40 +542,255 @@
             <div class="movie-list">
                 <div class="movie">
                     <div class="crown crown-1">👑</div>
-                    <img src="/images/conan.jpg" alt="映画1" width=”横幅” height=”縦幅”>
+                    <img src="https://picsum.photos/400/400?random=1" alt="映画1" width="400" height="400">
                 </div>
                 <div class="movie">
                     <div class="crown crown-2">👑</div>
-                    <img src="/images/senkyo.jpg" alt="映画2" width=”横幅” height=”縦幅”>
+                    <img src="https://picsum.photos/400/400?random=2" alt="映画2" width="400" height="400">
                 </div>
                 <div class="movie">
                     <div class="crown crown-3">👑</div>
-                    <img src="/images/160.jpg" alt="映画3" width=”横幅” height=”縦幅”>
+                    <img src="https://picsum.photos/400/400?random=3" alt="映画3" width="400" height="400">
                 </div>
             </div>
         </div>
         
         <div class="view-all">作品一覧</div>
         
-        <div class="carousel">
-            <div class="carousel-nav nav-prev">&lt;</div>
-            <div class="carousel-item">
-                <img src="/images/conan.jpg" alt="映画1" width=”横幅” height=”縦幅”>
+        <div class="carousel-section">
+            <h3 class="carousel-title">注目作品</h3>
+            <div class="carousel">
+                <div class="carousel-nav nav-prev" onclick="prevSlide()">‹</div>
+                <div class="carousel-container" id="carouselContainer">
+                    <!-- 映画アイテムがここに動的に生成されます -->
+                </div>
+                <div class="carousel-nav nav-next" onclick="nextSlide()">›</div>
             </div>
-            <div class="carousel-item">
-                <img src="/images/160.jpg" alt="映画2" width=”横幅” height=”縦幅”>
+            
+            <div class="carousel-dots" id="carouselDots">
+                <!-- ドットがここに動的に生成されます -->
             </div>
-            <div class="carousel-item">
-                <img src="/images/main.jpg" alt="映画3" width=”横幅” height=”縦幅”>
-            </div>
-            <div class="carousel-nav nav-next">&gt;</div>
-        </div>
-        
-        <div class="carousel-dots">
-            <div class="dot active"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
         </div>
     </div>
+
+    <!-- Help Modal -->
+    <div id="helpModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeHelpModal()">&times;</span>
+            <div class="help-content">
+                <div class="help-header">
+                    <h1>HAL CINEMAS</h1>
+                    <div class="help-subtitle">ヘルプ・ガイド</div>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            Q. この映画館の料金は？<span class="dropdown-arrow">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            <table class="price-table">
+                                <tr>
+                                    <td>一般</td>
+                                    <td>1800円</td>
+                                </tr>
+                                <tr>
+                                    <td>大学生</td>
+                                    <td>1600円</td>
+                                </tr>
+                                <tr>
+                                    <td>中学、高校</td>
+                                    <td>1400円</td>
+                                </tr>
+                                <tr>
+                                    <td>小学、幼児</td>
+                                    <td>1000円</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            Q. 劇場はどんな感じ？<span class="dropdown-arrow">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            当劇場は最新の音響・映像設備を完備しており、快適な鑑賞環境をご提供しています。全席指定席で、ゆったりとした座席間隔を確保しています。
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            Q. 予約方法について教えてください<span class="dropdown-arrow">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            オンライン予約、電話予約、劇場窓口でのご予約が可能です。オンライン予約は24時間受付しており、座席指定も可能です。
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            Q. 上映時間の変更はありますか？<span class="dropdown-arrow">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            上映時間は変更になる場合があります。最新の上映スケジュールは当サイトまたはお電話でご確認ください。
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            Q. 駐車場はありますか？<span class="dropdown-arrow">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            無料駐車場を完備しています。映画をご鑑賞のお客様は3時間まで無料でご利用いただけます。
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            Q. 飲食物の持ち込みは可能ですか？<span class="dropdown-arrow">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            外部からの飲食物の持ち込みはご遠慮いただいております。劇場内の売店で様々なお飲み物やお菓子をご用意しています。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 映画データ（後で追加・変更しやすいように配列で管理）
+        const movies = [
+            { src: 'https://picsum.photos/400/300?random=4', alt: '映画1' },
+            { src: 'https://picsum.photos/400/300?random=5', alt: '映画2' },
+            { src: 'https://picsum.photos/400/300?random=6', alt: '映画3' },
+            { src: 'https://picsum.photos/400/300?random=7', alt: '映画4' },
+            { src: 'https://picsum.photos/400/300?random=8', alt: '映画5' },
+            { src: 'https://picsum.photos/400/300?random=9', alt: '映画6' },
+            { src: 'https://picsum.photos/400/300?random=10', alt: '映画7' },
+            { src: 'https://picsum.photos/400/300?random=11', alt: '映画8' },
+            { src: 'https://picsum.photos/400/300?random=12', alt: '映画9' }
+        ];
+
+        let currentIndex = 0;
+        const itemsPerView = 3;
+        const totalSlides = Math.ceil(movies.length / itemsPerView);
+
+        // カルーセルの初期化
+        function initCarousel() {
+            const container = document.getElementById('carouselContainer');
+            const dotsContainer = document.getElementById('carouselDots');
+            
+            // 映画アイテムを生成
+            movies.forEach((movie, index) => {
+                const item = document.createElement('div');
+                item.className = 'carousel-item';
+                item.innerHTML = `<img src="${movie.src}" alt="${movie.alt}" width="400" height="300">`;
+                container.appendChild(item);
+            });
+
+            // ドットを生成
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.className = `dot${i === 0 ? ' active' : ''}`;
+                dot.onclick = () => goToSlide(i);
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            updateCarousel();
+        }
+        
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+        
+        function goToSlide(index) {
+            currentIndex = index;
+            updateCarousel();
+        }
+        
+        function updateCarousel() {
+            const container = document.getElementById('carouselContainer');
+            const translateX = -(currentIndex * (100 / itemsPerView));
+            container.style.transform = `translateX(${translateX}%)`;
+            
+            // ドットの更新
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+        }
+        
+        // 自動スライド機能
+        let autoSlideInterval;
+        
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(() => {
+                nextSlide();
+            }, 4000);
+        }
+        
+        function stopAutoSlide() {
+            clearInterval(autoSlideInterval);
+        }
+        
+        // カルーセルにマウスが乗ったら自動スライドを停止、離れたら再開
+        document.querySelector('.carousel').addEventListener('mouseenter', stopAutoSlide);
+        document.querySelector('.carousel').addEventListener('mouseleave', startAutoSlide);
+        
+        // Help Modal Functions
+        function openHelpModal() {
+            document.getElementById('helpModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeHelpModal() {
+            document.getElementById('helpModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        function toggleFaq(element) {
+            // Close all other open FAQs
+            const allQuestions = document.querySelectorAll('.faq-question');
+            const allAnswers = document.querySelectorAll('.faq-answer');
+            
+            allQuestions.forEach(q => {
+                if (q !== element) {
+                    q.classList.remove('active');
+                }
+            });
+            
+            allAnswers.forEach(a => {
+                if (a !== element.nextElementSibling) {
+                    a.classList.remove('show');
+                }
+            });
+            
+            // Toggle current FAQ
+            element.classList.toggle('active');
+            const answer = element.nextElementSibling;
+            answer.classList.toggle('show');
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('helpModal');
+            if (event.target === modal) {
+                closeHelpModal();
+            }
+        }
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeHelpModal();
+            }
+        });
+
+        // ページ読み込み時の初期化
+        document.addEventListener('DOMContentLoaded', function() {
+            initCarousel();
+            startAutoSlide();
+        });
+    </script>
 </body>
 </html>

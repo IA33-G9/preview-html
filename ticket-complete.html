@@ -6,7 +6,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
   <title>HAL CINEMAS</title>
   <style>
-
     body {
         font-family: Arial, sans-serif;
         margin: 0;
@@ -26,6 +25,7 @@
             max-width: 1536px;
         }
     }
+    
     .header {
         padding: 10px 20px;
         display: flex;
@@ -33,14 +33,93 @@
         align-items: center;
         border-bottom: 4px solid black;
     }
+    
     .logo {
         font-size: 28px;
         color: #000;
         font-family: 'Luckiest Guy', cursive;
     }
+    
     .login {
         color: #ff69b4;
         font-size: 14px;
+    }
+
+    /* 進捗バー */
+    .progress-container {
+      background-color: white;
+      padding: 20px 0;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .progress-bar {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .progress-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .step-circle {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+      font-size: 12px;
+      color: white;
+    }
+
+    .step-circle.completed {
+      background-color: #28a745;
+    }
+
+    .step-circle.active {
+      background-color: #28a745;
+    }
+
+    .step-label {
+      font-size: 14px;
+      color: #666;
+      text-align: center;
+    }
+
+    .step-label.completed {
+      color: #28a745;
+    }
+
+    .step-label.active {
+      color: #28a745;
+      font-weight: bold;
+    }
+
+    .progress-line {
+      position: absolute;
+      top: 10px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: #ddd;
+      z-index: 1;
+    }
+
+    .progress-line-fill {
+      height: 100%;
+      background-color: #28a745;
+      width: 100%;
+      transition: width 0.3s ease;
     }
 
     .main {
@@ -48,37 +127,120 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: start;
-      padding: 30px 20px;
+      justify-content: center;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .success-icon {
+      width: 60px;
+      height: 60px;
+      background-color: #28a745;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 30px;
+      color: white;
     }
 
     .complete-title {
       font-weight: bold;
-      font-size: 24px;
-      margin-bottom: 20px;
+      font-size: 28px;
+      margin-bottom: 15px;
+      color: #28a745;
     }
 
     .complete-message {
-      font-size: 18px;
-      margin-bottom: 40px;
+      font-size: 16px;
+      margin-bottom: 30px;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    .ticket-info {
+      background-color: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 8px;
+      padding: 25px;
+      margin-bottom: 30px;
+      max-width: 450px;
+      width: 100%;
+    }
+
+    .ticket-info h3 {
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-size: 20px;
+      color: #333;
+    }
+
+    .ticket-detail {
+      display: flex;
+      justify-content: space-between;
+      margin: 8px 0;
+      font-size: 14px;
+    }
+
+    .ticket-detail strong {
+      font-weight: bold;
     }
 
     .cancel-link {
       color: red;
       font-size: 14px;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
       text-decoration: none;
+      display: block;
+    }
+
+    .cancel-link:hover {
+      text-decoration: underline;
     }
 
     .top-button {
       display: inline-block;
-      padding: 10px 30px;
+      padding: 12px 35px;
       background-color: black;
       color: white;
       border-radius: 30px;
       text-decoration: none;
       font-size: 16px;
       font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .top-button:hover {
+      background-color: #333;
+    }
+
+    @media (max-width: 768px) {
+      .progress-bar {
+        padding: 0 20px;
+      }
+
+      .step-label {
+        font-size: 12px;
+      }
+
+      .ticket-info {
+        padding: 20px;
+        margin: 0 20px 30px 20px;
+      }
+
+      .complete-title {
+        font-size: 24px;
+      }
+
+      .complete-message {
+        font-size: 14px;
+        margin: 0 20px 30px 20px;
+      }
+
+      .main {
+        padding: 30px 20px;
+      }
     }
   </style>
 </head>
@@ -89,13 +251,68 @@
     <div class="login">ログインはここから</div>
   </div>
 
+  <!-- 進捗バー -->
+  <div class="progress-container">
+    <div class="progress-bar">
+      <div class="progress-line">
+        <div class="progress-line-fill"></div>
+      </div>
+      <div class="progress-step">
+        <div class="step-circle completed">✓</div>
+        <div class="step-label completed">ご入力</div>
+      </div>
+      <div class="progress-step">
+        <div class="step-circle completed">✓</div>
+        <div class="step-label completed">ご確認</div>
+      </div>
+      <div class="progress-step">
+        <div class="step-circle active">✓</div>
+        <div class="step-label active">完了</div>
+      </div>
+    </div>
+  </div>
+
   <div class="main">
+    <div class="success-icon">✓</div>
+    
     <h2 class="complete-title">予約が完了しました。</h2>
-    <p class="complete-message">ご来場をお待ちしております！</p>
+    
+    <p class="complete-message">
+      ご来場をお待ちしております！<br>
+      予約内容の詳細は以下の通りです。
+    </p>
+
+    <div class="ticket-info">
+      <h3>予約詳細</h3>
+      <div class="ticket-detail">
+        <span>予約番号:</span>
+        <strong>HAL-2025-001234</strong>
+      </div>
+      <div class="ticket-detail">
+        <span>映画:</span>
+        <strong>ゴジラ-1.0</strong>
+      </div>
+      <div class="ticket-detail">
+        <span>日時:</span>
+        <strong>2025年6月15日 18:00～20:30</strong>
+      </div>
+      <div class="ticket-detail">
+        <span>劇場:</span>
+        <strong>HAL シネマズ新宿</strong>
+      </div>
+      <div class="ticket-detail">
+        <span>座席:</span>
+        <strong>D1, D2, D3, D4, D5, D6</strong>
+      </div>
+      <div class="ticket-detail">
+        <span>合計金額:</span>
+        <strong>¥9,800</strong>
+      </div>
+    </div>
+
     <a href="#" class="cancel-link">キャンセルのご案内</a>
     <a href="top.html" class="top-button">トップへ</a>
   </div>
-
 </div>
 </body>
 </html>

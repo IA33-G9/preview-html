@@ -13,70 +13,136 @@
             background-color: #f5f5f5;
         }
         .container {
-            max-width: 414px;
+            max-width: 1536px;
             width: 100%;
             margin: 0 auto;
             background-color: #333;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             border: 1px solid #ccc;
             color: white;
+            min-height: 100vh;
         }
         .header {
             background-color: white;
-            padding: 10px;
+            padding: 15px;
             text-align: center;
             border-bottom: 2px solid #000;
         }
         .logo {
-            font-size: 24px;
+            font-size: 32px;
             font-weight: bold;
             color: #000;
             font-family: 'Luckiest Guy', cursive;
         }
         .movie-details {
-            padding: 15px;
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         .back-button {
             background-color: transparent;
             color: white;
-            border: none;
-            padding: 10px 0;
-            margin-bottom: 10px;
+            border: 2px solid white;
+            padding: 12px 24px;
+            margin-bottom: 30px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 18px;
             display: inline-block;
             text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: white;
+            color: #333;
+        }
+        .content-section {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 40px;
+            align-items: flex-start;
+        }
+        .image-section {
+            flex: 1;
+            max-width: 500px;
         }
         .detail-image {
             width: 100%;
             height: auto;
-            margin-bottom: 15px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+        .info-section {
+            flex: 1;
+            padding-left: 20px;
         }
         .detail-title {
             font-weight: bold;
-            margin-bottom: 10px;
-            font-size: 18px;
+            margin-bottom: 20px;
+            font-size: 36px;
+            color: #fff;
+            line-height: 1.2;
         }
         .detail-rating {
             color: #ff3b30;
-            margin-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 28px;
         }
         .detail-description {
-            line-height: 1.6;
-            margin-bottom: 20px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            font-size: 18px;
+            color: #e0e0e0;
+        }
+        .button-section {
+            text-align: center;
+            padding: 20px 0;
         }
         .reservation-button {
             background-color: #ff3b30;
             color: white;
             border: none;
-            padding: 10px;
-            width: 100%;
+            padding: 20px 60px;
             text-align: center;
             cursor: pointer;
             font-weight: bold;
-            font-size: 16px;
-            display: block;
+            font-size: 24px;
+            display: inline-block;
             text-decoration: none;
+            border-radius: 12px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .reservation-button:hover {
+            background-color: #e6342a;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .content-section {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .info-section {
+                padding-left: 0;
+            }
+            .detail-title {
+                font-size: 28px;
+            }
+            .detail-rating {
+                font-size: 22px;
+            }
+            .detail-description {
+                font-size: 16px;
+            }
+            .reservation-button {
+                font-size: 20px;
+                padding: 15px 40px;
+            }
+            .movie-details {
+                padding: 20px;
+            }
         }
     </style>
 </head>
@@ -88,17 +154,28 @@
         
         <div class="movie-details">
             <a href="eiga.html" class="back-button">&lt; 戻る</a>
-            <img src="/api/placeholder/400/320" alt="名探偵コナン 紺青の拳" class="detail-image">
-            <div class="detail-title">名探偵コナン 紺青の拳</div>
-            <div class="detail-rating">★★★★★</div>
-            <div class="detail-description">
-                名探偵・八十島博士を訪ね、京都・大阪を訪れていたコナンと蘭。その大阪で、サファイア「紺青の拳」を展示する祝賀会が開かれていた。かつて八十島の亡き妻の愛したサファイアは、最近帰国した宝石コレクターの白鳥紺子が落札したものだった。
-                <br><br>
-                その夜、京都の神社から鬼が舞い降り、「紺青の拳」が盗まれた。事件現場に残された血痕から、関西の高校生探偵・服部平次が犯人だと思われてしまい、平次の婚約者・遠山和葉は彼の無実を証明するため奔走する。
-                <br><br>
-                世界最大のサファイアの謎を追う、怪盗キッドとの対決も見どころの1つ。
+            
+            <div class="content-section">
+                <div class="image-section">
+                    <img src="/api/placeholder/500/750" alt="名探偵コナン 紺青の拳" class="detail-image">
+                </div>
+                
+                <div class="info-section">
+                    <div class="detail-title">名探偵コナン 紺青の拳</div>
+                    <div class="detail-rating">★★★★★</div>
+                    <div class="detail-description">
+                        名探偵・八十島博士を訪ね、京都・大阪を訪れていたコナンと蘭。その大阪で、サファイア「紺青の拳」を展示する祝賀会が開かれていた。かつて八十島の亡き妻の愛したサファイアは、最近帰国した宝石コレクターの白鳥紺子が落札したものだった。
+                        <br><br>
+                        その夜、京都の神社から鬼が舞い降り、「紺青の拳」が盗まれた。事件現場に残された血痕から、関西の高校生探偵・服部平次が犯人だと思われてしまい、平次の婚約者・遠山和葉は彼の無実を証明するため奔走する。
+                        <br><br>
+                        世界最大のサファイアの謎を追う、怪盗キッドとの対決も見どころの1つ。スリルとサスペンスに満ちた推理アドベンチャーをお楽しみください。
+                    </div>
+                </div>
             </div>
-            <a href="reservation.html" class="reservation-button">予約</a>
+            
+            <div class="button-section">
+                <a href="reservation.html" class="reservation-button">予約する</a>
+            </div>
         </div>
     </div>
 </body>

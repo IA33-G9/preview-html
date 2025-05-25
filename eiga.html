@@ -13,7 +13,7 @@
             background-color: #f5f5f5;
         }
         .container {
-            max-width: 1536px;  /* ページ幅を1536pxに変更 */
+            max-width: 1536px;
             width: 100%;
             margin: 0 auto;
             background-color: white;
@@ -56,6 +56,7 @@
             padding: 10px 5px;
             overflow-x: auto;
             gap: 5px;
+            justify-content: center;
         }
         .filter-button {
             padding: 8px 20px;
@@ -72,17 +73,20 @@
             border: 1px solid #ff3b30;
         }
         .search-bar {
-            padding: 10px;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
         }
         .search-input {
             width: 100%;
+            max-width: 600px;
             padding: 8px;
             border: 1px solid #ccc;
             border-radius: 5px;
             box-sizing: border-box;
         }
         .movie-container {
-            padding: 10px;
+            padding: 20px;
             display: none;
         }
         .movie-container.active {
@@ -90,47 +94,81 @@
         }
         .movie-list {
             display: flex;
-            flex-direction: column;  /* 縦に並べる */
-            gap: 20px;
+            flex-direction: column;
+            gap: 40px;
+            align-items: center;
         }
         .movie-card {
-            margin-bottom: 20px;
             border-bottom: 1px solid #eee;
-            padding-bottom: 20px;
+            padding-bottom: 30px;
             width: 100%;
+            max-width: 1200px;
+            text-align: center;
+            cursor: pointer;
         }
         .movie-image {
             width: 100%;
-            max-width: 800px;  /* 画像の最大幅を設定 */
+            max-width: 1000px;
             height: auto;
             display: block;
-            margin-bottom: 10px;
+            margin: 0 auto 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         .movie-title {
             font-weight: bold;
-            margin-bottom: 5px;
-            font-size: 20px;  /* タイトルを大きく */
+            margin-bottom: 15px;
+            font-size: 28px;
+            color: #333;
         }
         .movie-rating {
             color: #ff3b30;
-            margin-bottom: 10px;
-            font-size: 18px;  /* 評価を大きく */
+            margin-bottom: 20px;
+            font-size: 22px;
         }
         .reservation-button {
             background-color: #ff3b30;
             color: white;
             border: none;
-            padding: 15px;  /* ボタンを大きく */
-            width: 300px;  /* ボタン幅を固定 */
+            padding: 20px 40px;
+            width: 400px;
+            max-width: 90%;
             text-align: center;
             cursor: pointer;
             font-weight: bold;
-            font-size: 18px;  /* フォントサイズ大きく */
-            display: block;
+            font-size: 20px;
+            display: inline-block;
             text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+            margin: 0 auto;
+        }
+        .reservation-button:hover {
+            background-color: #e6342a;
         }
         .reservation-button.inactive {
             background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .reservation-button.inactive:hover {
+            background-color: #cccccc;
+        }
+        
+        @media (max-width: 768px) {
+            .movie-title {
+                font-size: 24px;
+            }
+            .movie-rating {
+                font-size: 18px;
+            }
+            .reservation-button {
+                font-size: 18px;
+                padding: 15px 30px;
+                width: 300px;
+            }
+            .movie-image {
+                max-width: 100%;
+            }
         }
     </style>
 </head>
@@ -162,21 +200,21 @@
         <div class="movie-container active" id="current-movies">
             <div class="movie-list">
                 <div class="movie-card" data-id="conan">
-                    <img src="/api/placeholder/800/500" alt="名探偵コナン 紺青の拳" class="movie-image">
+                    <img src="/api/placeholder/1000/600" alt="名探偵コナン 紺青の拳" class="movie-image">
                     <div class="movie-title">名探偵コナン 紺青の拳</div>
                     <div class="movie-rating">★★★★★</div>
                     <a href="reservation.html" class="reservation-button">予約</a>
                 </div>
                 
                 <div class="movie-card" data-id="movie2">
-                    <img src="/api/placeholder/800/500" alt="ドライブ・マイ・カー" class="movie-image">
+                    <img src="/api/placeholder/1000/600" alt="ドライブ・マイ・カー" class="movie-image">
                     <div class="movie-title">ドライブ・マイ・カー</div>
                     <div class="movie-rating">★★★★☆</div>
                     <a href="reservation.html" class="reservation-button">予約</a>
                 </div>
                 
                 <div class="movie-card" data-id="movie3">
-                    <img src="/api/placeholder/800/500" alt="ワイルド・スピード" class="movie-image">
+                    <img src="/api/placeholder/1000/600" alt="ワイルド・スピード" class="movie-image">
                     <div class="movie-title">ワイルド・スピード</div>
                     <div class="movie-rating">★★★★☆</div>
                     <a href="reservation.html" class="reservation-button">予約</a>
@@ -188,21 +226,21 @@
         <div class="movie-container" id="upcoming-movies">
             <div class="movie-list">
                 <div class="movie-card" data-id="minecraft">
-                    <img src="/api/placeholder/800/500" alt="マインクラフト・ザ・ムービー" class="movie-image">
+                    <img src="/api/placeholder/1000/600" alt="マインクラフト・ザ・ムービー" class="movie-image">
                     <div class="movie-title">マインクラフト・ザ・ムービー</div>
                     <div class="movie-rating">公開予定</div>
                     <span class="reservation-button inactive">予約</span>
                 </div>
                 
                 <div class="movie-card" data-id="upcoming2">
-                    <img src="/api/placeholder/800/500" alt="デッド・プール3" class="movie-image">
+                    <img src="/api/placeholder/1000/600" alt="デッド・プール3" class="movie-image">
                     <div class="movie-title">デッド・プール3</div>
                     <div class="movie-rating">公開予定</div>
                     <span class="reservation-button inactive">予約</span>
                 </div>
                 
                 <div class="movie-card" data-id="upcoming3">
-                    <img src="/api/placeholder/800/500" alt="アバター3" class="movie-image">
+                    <img src="/api/placeholder/1000/600" alt="アバター3" class="movie-image">
                     <div class="movie-title">アバター3</div>
                     <div class="movie-rating">公開予定</div>
                     <span class="reservation-button inactive">予約</span>
