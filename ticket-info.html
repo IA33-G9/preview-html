@@ -47,6 +47,7 @@
             background-color: white;
             padding: 20px 0;
             border-bottom: 1px solid #ddd;
+            position: relative;
         }
 
         .progress-bar {
@@ -113,6 +114,41 @@
             background-color: #007bff;
             width: 33%;
             transition: width 0.3s ease;
+        }
+
+        /* 戻るボタン */
+        .back-button {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: background-color 0.2s ease;
+        }
+
+        .back-button:hover {
+            background-color: #5a6268;
+        }
+
+        .back-button a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .arrow {
+            font-size: 12px;
         }
 
         .ticket-section {
@@ -185,6 +221,19 @@
             .step-label {
                 font-size: 12px;
             }
+
+            .back-button {
+                position: static;
+                transform: none;
+                margin: 10px 20px;
+                align-self: flex-start;
+            }
+
+            .progress-container {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
         }
 
     </style>
@@ -198,6 +247,12 @@
 
     <!-- 進捗バー -->
     <div class="progress-container">
+        <button class="back-button">
+            <a href="ticket-annai.html">
+                <span class="arrow">←</span>
+                戻る
+            </a>
+        </button>
         <div class="progress-bar">
             <div class="progress-line">
                 <div class="progress-line-fill"></div>

@@ -20,6 +20,7 @@
       border-bottom: 4px solid black;
       font-weight: bold;
       font-size: 1.8rem;
+      position: relative;
     }
 
     /* 進捗バー */
@@ -202,6 +203,77 @@
       color: white;
     }
 
+    /* TOPページに戻るボタン */
+    .back-to-home {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: linear-gradient(135deg, #e60012, #ff4444);
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      padding: 12px 20px;
+      font-size: 14px;
+      font-weight: bold;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 15px rgba(230, 0, 18, 0.3);
+      z-index: 1000;
+      transform: translateY(0);
+    }
+
+    .back-to-home:hover {
+      background: linear-gradient(135deg, #b0000e, #e60012);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(230, 0, 18, 0.4);
+      text-decoration: none;
+      color: white;
+    }
+
+    .back-to-home:active {
+      transform: translateY(-1px);
+    }
+
+    .back-to-home::before {
+      font-size: 16px;
+    }
+
+    /* ヘッダーナビゲーション */
+    .header-nav {
+      position: absolute;
+      left: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .home-link {
+      color: #333;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: normal;
+      padding: 8px 16px;
+      border: 1px solid #333;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .home-link:hover {
+      background-color: #333;
+      color: white;
+    }
+
+    .home-link::before {
+      content: "←";
+      font-size: 12px;
+    }
+
     @media (max-width: 768px) {
       .movie-header {
         flex-direction: column;
@@ -224,12 +296,34 @@
       .step-label {
         font-size: 12px;
       }
+
+      .back-to-home {
+        bottom: 20px;
+        right: 20px;
+        padding: 10px 16px;
+        font-size: 13px;
+      }
+
+      .header-nav {
+        position: static;
+        text-align: left;
+        margin-bottom: 10px;
+        transform: none;
+      }
+
+      .home-link {
+        font-size: 12px;
+        padding: 6px 12px;
+      }
     }
   </style>
 </head>
 <body>
 
 <header>
+  <div class="header-nav">
+    <a href="top.html" class="home-link">TOPページ</a>
+  </div>
   HAL CINEMAS
 </header>
 
@@ -259,9 +353,9 @@
   <!-- 映画1 -->
   <div class="movie-block">
     <div class="movie-header">
-      <img src="godzilla.jpg" alt="ゴジラ-1.0" class="movie-poster">
+      <img src="images/conan.jpg" alt="コナン" class="movie-poster">
       <div class="movie-details">
-        <h2>ゴジラ-1.0</h2>
+        <h2>名探偵コナン 隻眼の残像</h2>
 
         <div class="form-group">
           <label>劇場：</label>
@@ -309,9 +403,9 @@
   <!-- 映画2 -->
   <div class="movie-block">
     <div class="movie-header">
-      <img src="kimi_no_na_wa.jpg" alt="君の名は。" class="movie-poster">
+      <img src="images/tom.jpg" alt="トム" class="movie-poster">
       <div class="movie-details">
-        <h2>君の名は。</h2>
+        <h2>MISSION: IMPOSSIBLE</h2>
 
         <div class="form-group">
           <label>劇場：</label>
@@ -358,7 +452,9 @@
 
 </div>
 
+
 <script>
+  // カスタムセレクトの機能
   document.querySelectorAll('.custom-select-wrapper').forEach(wrapper => {
     const select = wrapper.querySelector('.custom-select');
     const options = wrapper.querySelector('.custom-options');
