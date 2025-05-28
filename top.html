@@ -11,7 +11,7 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Noto Sans JP', Arial, sans-serif;
             margin: 0;
@@ -19,7 +19,7 @@
             background-color: #f5f5f5;
             min-height: 100vh;
         }
-        
+
         .container {
             max-width: 1920px;
             width: 100%;
@@ -29,14 +29,14 @@
             margin-top: 20px;
             margin-bottom: 20px;
         }
-        
+
         @media (max-width: 1920px) {
             .container {
                 max-width: 1536px;
                 margin: 10px;
             }
         }
-        
+
         .header {
             background-color: #e0e0e0;
             padding: 20px 30px;
@@ -45,20 +45,20 @@
             align-items: center;
             border-bottom: 1px solid #ccc;
         }
-        
+
         .logo {
             font-size: 32px;
             font-weight: bold;
             color: #000;
             font-family: 'Luckiest Guy', cursive;
         }
-        
+
         .header-right {
             display: flex;
             align-items: center;
             gap: 20px;
         }
-        
+
         .help-link, .login {
             color: #333;
             font-size: 14px;
@@ -69,54 +69,61 @@
             transition: all 0.3s ease;
             border: 1px solid #ddd;
         }
-        
+
         .help-link:hover, .login a:hover {
             background: #eee;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
-        
+
         .login a {
             color: #ff69b4;
             text-decoration: none;
         }
-        
+
         .nav {
             display: flex;
             border-bottom: 1px solid #ccc;
         }
-        
+
         .nav-item {
             flex: 1;
             text-align: center;
             padding: 20px 0;
-            background-color: #e0e0e0;
+            background-color: #404040;
             border-right: 1px solid #ccc;
             position: relative;
             transition: all 0.3s ease;
+            color: #f0f0f0;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        
+
         .nav-item:last-child {
             border-right: none;
         }
-        
+
         .nav-item a {
             color: #333;
             text-decoration: none;
             font-weight: 500;
             font-size: 16px;
         }
-        
+
         .nav-item:hover {
-            background-color: #d0d0d0;
+            background-color: #555;
             transform: scale(1.02);
         }
-        
+
         .ranking {
             padding: 40px 20px;
             border-bottom: 1px solid #ccc;
         }
-        
+
         .ranking-title {
             margin-bottom: 30px;
             text-align: center;
@@ -124,7 +131,7 @@
             font-weight: 700;
             color: #333;
         }
-        
+
         .movie-list {
             display: flex;
             justify-content: space-between;
@@ -134,7 +141,7 @@
             background-color: #f9f9f9;
             padding: 20px;
         }
-        
+
         .movie {
             width: 30%;
             position: relative;
@@ -144,12 +151,12 @@
             transition: all 0.3s ease;
             background: #fff;
         }
-        
+
         .movie:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
-        
+
         .movie img {
             width: 100%;
             height: 500px;
@@ -157,40 +164,27 @@
             display: block;
             transition: transform 0.3s ease;
         }
-        
+
         .movie:hover img {
             transform: scale(1.05);
         }
-        
+
         .crown {
             position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            font-size: 24px;
-            z-index: 3;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-            border: 3px solid #fff;
+            top: 10px;
+            left: 10px;
+            z-index: 2;
         }
-        
-        .crown-1 {
-            background: linear-gradient(135deg, #ffd700, #ffed4e);
+
+        .crown img {
+            width: 100px;  /* または 150px、200px に調整 */
+            height: auto;
         }
-        
-        .crown-2 {
-            background: linear-gradient(135deg, #c0c0c0, #e8e8e8);
+
+        .movie {
+            position: relative; /* 👈 これが重要！王冠を画像の上に載せるため */
         }
-        
-        .crown-3 {
-            background: linear-gradient(135deg, #cd7f32, #e6a85c);
-        }
-        
+
         .view-all {
             text-align: center;
             padding: 15px 30px;
@@ -204,18 +198,18 @@
             transition: all 0.3s ease;
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
         }
-        
+
         .view-all:hover {
             background-color: #d0d0d0;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
-        
+
         .carousel-section {
             padding: 40px 20px;
             background-color: #f9f9f9;
         }
-        
+
         .carousel-title {
             text-align: center;
             font-size: 28px;
@@ -223,7 +217,7 @@
             color: #333;
             margin-bottom: 30px;
         }
-        
+
         .carousel {
             display: flex;
             position: relative;
@@ -233,12 +227,12 @@
             overflow: hidden;
             border-radius: 10px;
         }
-        
+
         .carousel-container {
             display: flex;
             transition: transform 0.5s ease;
         }
-        
+
         .carousel-item {
             min-width: 33.333%;
             padding: 0 10px;
@@ -247,11 +241,11 @@
             overflow: hidden;
             transition: all 0.3s ease;
         }
-        
+
         .carousel-item:hover {
             transform: scale(1.05);
         }
-        
+
         .carousel-item img {
             width: 100%;
             height: 300px;
@@ -262,11 +256,11 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             cursor: pointer;
         }
-        
+
         .carousel-item:hover img {
             transform: scale(1.05);
         }
-        
+
         .carousel-nav {
             position: absolute;
             top: 50%;
@@ -284,27 +278,27 @@
             z-index: 10;
             border: 2px solid rgba(255,255,255,0.3);
         }
-        
+
         .carousel-nav:hover {
             background: rgba(0,0,0,0.8);
             transform: translateY(-50%) scale(1.1);
         }
-        
+
         .nav-prev {
             left: 20px;
         }
-        
+
         .nav-next {
             right: 20px;
         }
-        
+
         .carousel-dots {
             display: flex;
             justify-content: center;
             padding: 20px 0;
             gap: 10px;
         }
-        
+
         .dot {
             width: 12px;
             height: 12px;
@@ -313,16 +307,16 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        
+
         .dot.active {
             background: #666;
             transform: scale(1.2);
         }
-        
+
         .dot:hover {
             transform: scale(1.1);
         }
-        
+
         /* Help Modal Styles */
         .modal {
             display: none;
@@ -335,7 +329,7 @@
             background-color: rgba(0,0,0,0.5);
             backdrop-filter: blur(5px);
         }
-        
+
         .modal-content {
             background-color: white;
             margin: 2% auto;
@@ -349,73 +343,75 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             overflow: hidden;
         }
-        
+
         /* Movie Detail Modal Styles */
         .movie-modal-content {
-            background-color: white;
-            margin: 5% auto;
-            padding: 0;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 600px;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            overflow: hidden;
+        background-color: white;
+        margin: 2% auto;
+        padding: 0;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 600px;
+        max-height: 90vh;
+        position: relative;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        overflow: hidden;
+        overflow-y: auto;
         }
-        
+
         .movie-detail-header {
             position: relative;
             overflow: hidden;
         }
-        
+
         .movie-detail-header img {
             width: 100%;
             height: 300px;
             object-fit: cover;
         }
-        
+
         .movie-detail-content {
             padding: 30px;
         }
-        
+
         .movie-title {
             font-size: 24px;
             font-weight: bold;
             margin-bottom: 15px;
             color: #333;
         }
-        
+
         .movie-description {
             color: #666;
             line-height: 1.6;
             margin-bottom: 20px;
         }
-        
+
         .movie-info {
             margin-bottom: 25px;
         }
-        
+
         .info-item {
             display: flex;
             margin-bottom: 8px;
         }
-        
+
         .info-label {
             font-weight: bold;
             width: 80px;
             color: #333;
         }
-        
+
         .info-value {
             color: #666;
         }
-        
+
         .movie-buttons {
             display: flex;
             gap: 15px;
             justify-content: center;
         }
-        
+
         .detail-btn, .reserve-btn {
             padding: 12px 24px;
             border: none;
@@ -428,27 +424,27 @@
             display: inline-block;
             text-align: center;
         }
-        
+
         .detail-btn {
             background-color: #e0e0e0;
             color: #333;
         }
-        
+
         .detail-btn:hover {
             background-color: #d0d0d0;
             transform: translateY(-2px);
         }
-        
+
         .reserve-btn {
             background-color: #ff69b4;
             color: white;
         }
-        
+
         .reserve-btn:hover {
             background-color: #ff4da6;
             transform: translateY(-2px);
         }
-        
+
         .close {
             position: absolute;
             right: 20px;
@@ -467,33 +463,33 @@
             background: rgba(255,255,255,0.9);
             transition: all 0.3s ease;
         }
-        
+
         .close:hover {
             background: #f44336;
             color: white;
             transform: scale(1.1);
         }
-        
+
         .help-content {
             height: 100%;
             overflow-y: auto;
             padding: 0;
         }
-        
+
         .help-header {
             padding: 40px 0;
             text-align: center;
             background: linear-gradient(135deg, #e0e0e0 0%, #d0d0d0 100%);
             color: #333;
         }
-        
+
         .help-header h1 {
             font-size: 46px;
             font-weight: bold;
             margin-bottom: 20px;
             font-family: 'Luckiest Guy', cursive;
         }
-        
+
         .help-subtitle {
             font-size: 28px;
             color: #666;
@@ -501,18 +497,18 @@
             text-align: center;
             position: relative;
         }
-        
+
         .faq-list {
             padding: 20px 30px;
         }
-        
+
         .faq-item {
             margin-bottom: 15px;
             border-radius: 5px;
             overflow: hidden;
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
         }
-        
+
         .faq-question {
             display: block;
             width: 100%;
@@ -527,11 +523,11 @@
             transition: all 0.3s ease;
             font-weight: 500;
         }
-        
+
         .faq-question:hover {
             background: #d0d0d0;
         }
-        
+
         .dropdown-arrow {
             position: absolute;
             right: 20px;
@@ -539,23 +535,23 @@
             transform: translateY(-50%);
             transition: transform 0.3s ease;
         }
-        
+
         .faq-question.active .dropdown-arrow {
             transform: translateY(-50%) rotate(180deg);
         }
-        
+
         .faq-answer {
             display: none;
             padding: 20px;
             background-color: white;
             border-top: 1px solid rgba(0,0,0,0.1);
         }
-        
+
         .faq-answer.show {
             display: block;
             animation: slideDown 0.3s ease;
         }
-        
+
         @keyframes slideDown {
             from {
                 opacity: 0;
@@ -566,7 +562,7 @@
                 max-height: 200px;
             }
         }
-        
+
         .price-table {
             width: 100%;
             border-collapse: collapse;
@@ -574,54 +570,54 @@
             overflow: hidden;
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
         }
-        
+
         .price-table tr {
             border-bottom: 1px solid #eee;
         }
-        
+
         .price-table tr:last-child {
             border-bottom: none;
         }
-        
+
         .price-table td {
             padding: 15px;
             background: #f9f9f9;
         }
-        
+
         .price-table td:last-child {
             text-align: right;
             font-weight: bold;
             color: #333;
         }
-        
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .movie-list {
                 flex-direction: column;
                 gap: 30px;
             }
-            
+
             .movie {
                 width: 100%;
             }
-            
+
             .carousel-item {
                 min-width: 100%;
             }
-            
+
             .header {
                 flex-direction: column;
                 gap: 15px;
             }
-            
+
             .header-right {
                 gap: 10px;
             }
-            
+
             .movie-buttons {
                 flex-direction: column;
             }
-            
+
             .movie-modal-content {
                 width: 95%;
                 margin: 2% auto;
@@ -638,34 +634,40 @@
                 <div class="login"><a href="login.html">ログインはここから</a></div>
             </div>
         </div>
-        
+
         <div class="nav">
-            <div class="nav-item"><a href="theater-annai.html">シアター劇場</a></div>
-            <div class="nav-item"><a href="eiga.html">映画</a></div>
-            <div class="nav-item"><a href="ticket-annai.html">チケット予約</a></div>
+            <a href="theater-annai.html" class="nav-item">シアター劇場</a>
+            <a href="eiga.html" class="nav-item">映画</a>
+            <a href="ticket-annai.html" class="nav-item">シアター劇場</a>
         </div>
-        
+
         <div class="ranking">
             <h3 class="ranking-title">今週の映画ランキング</h3>
-            
+
             <div class="movie-list">
                 <div class="movie">
-                    <div class="crown crown-1">👑</div>
-                    <img src="images/conan.jpg" alt="映画1" width="400" height="400">
+                    <div class="crown crown-1">
+                        <img src="images/1.png" alt="1位">
+                    </div>
+                    <img src="images/conan.jpg" alt="映画1">
                 </div>
                 <div class="movie">
-                    <div class="crown crown-2">👑</div>
-                    <img src="images/tom.jpg" alt="映画2" width="400" height="400">
+                    <div class="crown crown-2">
+                        <img src="images/2.png" alt="2位">
+                    </div>
+                    <img src="images/tom.jpg" alt="映画2">
                 </div>
                 <div class="movie">
-                    <div class="crown crown-3">👑</div>
-                    <img src="images/mike.jpg" alt="映画3" width="400" height="400">
+                    <div class="crown crown-3">
+                        <img src="images/3.png" alt="3位">
+                    </div>
+                    <img src="images/mike.jpg" alt="映画3">
                 </div>
             </div>
         </div>
-        
+
         <div class="view-all">作品一覧</div>
-        
+
         <div class="carousel-section">
             <h3 class="carousel-title">注目作品</h3>
             <div class="carousel">
@@ -675,7 +677,7 @@
                 </div>
                 <div class="carousel-nav nav-next" onclick="nextSlide()">›</div>
             </div>
-            
+
             <div class="carousel-dots" id="carouselDots">
                 <!-- ドットがここに動的に生成されます -->
             </div>
@@ -787,8 +789,8 @@
                     </div>
                 </div>
                 <div class="movie-buttons">
-                    <button class="detail-btn" onclick="showMovieDetail()">詳細を見る</button>
-                    <button class="reserve-btn" onclick="reserveMovie()">予約する</button>
+                    <a href="eiga.html" class="reserve-btn" onclick="reserveMovie()">詳細を見る</a>
+                    <a href="ticket-annai.html" class="reserve-btn" onclick="reserveMovie()">予約する</a>
                 </div>
             </div>
         </div>
@@ -797,53 +799,53 @@
     <script>
         // 映画データ（後で追加・変更しやすいように配列で管理）
         const movies = [
-            { 
-                src: 'images/conanyoko.jpg', 
+            {
+                src: 'images/conanyoko.jpg',
                 alt: '映画1',
-                title: '名探偵コナン 黒鉄の魚影',
-                description: '黒の組織の謎に迫る、シリーズ最新作。コナンと仲間たちが新たな事件に挑む！',
+                title: '名探偵コナン　隻眼の残像（せきがんのフラッシュバック）',
+                description: '負傷し隻眼となった敢助の左眼がなぜか突如激しく疼きだす…',
                 time: '110分',
                 genre: 'ミステリー・アニメ',
-                date: '2024年4月14日'
+                date: '2025年4月18日'
             },
-            { 
-                src: 'images/tomyoko.jpg', 
+            {
+                src: 'images/tomyoko.jpg',
                 alt: '映画2',
-                title: 'トムとジェリー 大冒険',
-                description: 'おなじみのトムとジェリーが大スクリーンで大暴れ！笑いと感動の物語。',
-                time: '95分',
-                genre: 'アニメ・コメディ',
-                date: '2024年3月15日'
+                title: 'ミッション：インポッシブル／ファイナル・レコニング',
+                description: 'すべての“ミッション”はここにつながる―。',
+                time: '169分 ',
+                genre: 'アクション',
+                date: '2025年5月23日'
             },
-            { 
-                src: 'images/mikeyoko.jpg', 
+            {
+                src: 'images/mikeyoko.jpg',
                 alt: '映画3',
-                title: 'モンスターズ・インク 新章',
-                description: 'マイクとサリーが帰ってきた！新しい仲間と共に繰り広げる冒険物語。',
-                time: '102分',
+                title: 'マインクラフト／ザ・ムービー',
+                description: '先住転送民のスティーブが現れて色々教えてくれる中、四角いモンスターたちが次々と迫り来る！',
+                time: '101分',
                 genre: 'アニメ・ファミリー',
-                date: '2024年5月20日'
+                date: '2025年4月4日'
             },
-            { 
-                src: 'images/kakuyoko.jpg', 
+            {
+                src: 'images/kakuyoko.jpg',
                 alt: '映画4',
-                title: '角の物語',
-                description: '心温まる家族の絆を描いた感動作。涙なしでは見られない名作です。',
-                time: '128分',
-                genre: 'ドラマ・ファミリー',
-                date: '2024年2月10日'
+                title: 'かくかくしかじか',
+                description: '先生が望んだ二人の未来、明子がついた許されない嘘。ずっと描くことができなかった9年間の日々が明かされる――。',
+                time: '127分',
+                genre: 'ドラマ',
+                date: '2025年5月16日'
             },
-            { 
-                src: 'images/sinyoko.jpg', 
+            {
+                src: 'images/sinyoko.jpg',
                 alt: '映画5',
-                title: '新世界への扉',
-                description: 'SF×アクションの超大作！未来への希望を描く壮大なスペクタクル。',
-                time: '145分',
-                genre: 'SF・アクション',
-                date: '2024年6月1日'
+                title: '＃真相をお話しします',
+                description: 'チャンネルが史上最大の盛り上がりを見せるなか、ついに警備室の男たちにスポットライトが当たり…',
+                time: '117分',
+                genre: 'ミステリー・フィクション',
+                date: '2025年4月25日（金）'
             },
-            { 
-                src: 'images/utayoko.jpg', 
+            {
+                src: 'images/utayoko.jpg',
                 alt: '映画6',
                 title: '歌声の向こう側',
                 description: '音楽に込められた想いを描くミュージカル映画。心に響く美しい歌声。',
@@ -851,8 +853,8 @@
                 genre: 'ミュージカル・ドラマ',
                 date: '2024年4月28日'
             },
-            { 
-                src: 'images/tabeyoko.jpg', 
+            {
+                src: 'images/tabeyoko.jpg',
                 alt: '映画7',
                 title: '食べ物の冒険',
                 description: '料理を通じて人々を繋ぐ温かい物語。美味しそうな料理が次々と登場！',
@@ -860,8 +862,8 @@
                 genre: 'コメディ・ファミリー',
                 date: '2024年3月22日'
             },
-            { 
-                src: 'images/oguyoko.jpg', 
+            {
+                src: 'images/oguyoko.jpg',
                 alt: '映画8',
                 title: 'オグの大冒険',
                 description: '小さな勇者オグが世界を救う！子供から大人まで楽しめる冒険活劇。',
@@ -869,8 +871,8 @@
                 genre: 'アドベンチャー・アニメ',
                 date: '2024年5月5日'
             },
-            { 
-                src: 'images/tomyoko.jpg', 
+            {
+                src: 'images/tomyoko.jpg',
                 alt: '映画9',
                 title: 'トムとジェリー 夏の大作戦',
                 description: '夏をテーマにした特別編！海や山での大騒動が始まる。',
@@ -888,7 +890,7 @@
         function initCarousel() {
             const container = document.getElementById('carouselContainer');
             const dotsContainer = document.getElementById('carouselDots');
-            
+
             // 映画アイテムを生成
             movies.forEach((movie, index) => {
                 const item = document.createElement('div');
@@ -910,50 +912,50 @@
             currentIndex = (currentIndex + 1) % totalSlides;
             updateCarousel();
         }
-        
+
         function prevSlide() {
             currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
             updateCarousel();
         }
-        
+
         function goToSlide(index) {
             currentIndex = index;
             updateCarousel();
         }
-        
+
         function updateCarousel() {
             const container = document.getElementById('carouselContainer');
             const translateX = -(currentIndex * (100 / itemsPerView));
             container.style.transform = `translateX(${translateX}%)`;
-            
+
             // ドットの更新
             const dots = document.querySelectorAll('.dot');
             dots.forEach((dot, index) => {
                 dot.classList.toggle('active', index === currentIndex);
             });
         }
-        
+
         // 自動スライド機能
         let autoSlideInterval;
-        
+
         function startAutoSlide() {
             autoSlideInterval = setInterval(() => {
                 nextSlide();
             }, 4000);
         }
-        
+
         function stopAutoSlide() {
             clearInterval(autoSlideInterval);
         }
-        
+
         // カルーセルにマウスが乗ったら自動スライドを停止、離れたら再開
         document.querySelector('.carousel').addEventListener('mouseenter', stopAutoSlide);
         document.querySelector('.carousel').addEventListener('mouseleave', startAutoSlide);
-        
+
         // Movie Modal Functions
         function openMovieModal(movieIndex) {
             const movie = movies[movieIndex];
-            
+
             document.getElementById('modalMovieImage').src = movie.src;
             document.getElementById('modalMovieImage').alt = movie.alt;
             document.getElementById('modalMovieTitle').textContent = movie.title;
@@ -961,58 +963,52 @@
             document.getElementById('modalMovieTime').textContent = movie.time;
             document.getElementById('modalMovieGenre').textContent = movie.genre;
             document.getElementById('modalMovieDate').textContent = movie.date;
-            
+
             document.getElementById('movieModal').style.display = 'block';
             document.body.style.overflow = 'hidden';
         }
-        
+
         function closeMovieModal() {
             document.getElementById('movieModal').style.display = 'none';
             document.body.style.overflow = 'auto';
         }
-        
-        function showMovieDetail() {
-            alert('映画の詳細ページに移動します。');
-        }
-        
-        function reserveMovie() {
-            alert('予約ページに移動します。');
-        }
-        
+
+
+
         // Help Modal Functions
         function openHelpModal() {
             document.getElementById('helpModal').style.display = 'block';
             document.body.style.overflow = 'hidden';
         }
-        
+
         function closeHelpModal() {
             document.getElementById('helpModal').style.display = 'none';
             document.body.style.overflow = 'auto';
         }
-        
+
         function toggleFaq(element) {
             // Close all other open FAQs
             const allQuestions = document.querySelectorAll('.faq-question');
             const allAnswers = document.querySelectorAll('.faq-answer');
-            
+
             allQuestions.forEach(q => {
                 if (q !== element) {
                     q.classList.remove('active');
                 }
             });
-            
+
             allAnswers.forEach(a => {
                 if (a !== element.nextElementSibling) {
                     a.classList.remove('show');
                 }
             });
-            
+
             // Toggle current FAQ
             element.classList.toggle('active');
             const answer = element.nextElementSibling;
             answer.classList.toggle('show');
         }
-        
+
         // Close modal when clicking outside
         window.onclick = function(event) {
             const helpModal = document.getElementById('helpModal');
@@ -1024,7 +1020,7 @@
                 closeMovieModal();
             }
         }
-        
+
         // Close modal with Escape key
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
