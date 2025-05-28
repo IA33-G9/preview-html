@@ -260,6 +260,7 @@
             transition: transform 0.3s ease;
             border-radius: 5px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
         }
         
         .carousel-item:hover img {
@@ -347,6 +348,105 @@
             position: relative;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             overflow: hidden;
+        }
+        
+        /* Movie Detail Modal Styles */
+        .movie-modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .movie-detail-header {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .movie-detail-header img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        
+        .movie-detail-content {
+            padding: 30px;
+        }
+        
+        .movie-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .movie-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .movie-info {
+            margin-bottom: 25px;
+        }
+        
+        .info-item {
+            display: flex;
+            margin-bottom: 8px;
+        }
+        
+        .info-label {
+            font-weight: bold;
+            width: 80px;
+            color: #333;
+        }
+        
+        .info-value {
+            color: #666;
+        }
+        
+        .movie-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+        
+        .detail-btn, .reserve-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .detail-btn {
+            background-color: #e0e0e0;
+            color: #333;
+        }
+        
+        .detail-btn:hover {
+            background-color: #d0d0d0;
+            transform: translateY(-2px);
+        }
+        
+        .reserve-btn {
+            background-color: #ff69b4;
+            color: white;
+        }
+        
+        .reserve-btn:hover {
+            background-color: #ff4da6;
+            transform: translateY(-2px);
         }
         
         .close {
@@ -517,6 +617,15 @@
             .header-right {
                 gap: 10px;
             }
+            
+            .movie-buttons {
+                flex-direction: column;
+            }
+            
+            .movie-modal-content {
+                width: 95%;
+                margin: 2% auto;
+            }
         }
     </style>
 </head>
@@ -653,18 +762,122 @@
         </div>
     </div>
 
+    <!-- Movie Detail Modal -->
+    <div id="movieModal" class="modal">
+        <div class="movie-modal-content">
+            <span class="close" onclick="closeMovieModal()">&times;</span>
+            <div class="movie-detail-header">
+                <img id="modalMovieImage" src="" alt="">
+            </div>
+            <div class="movie-detail-content">
+                <h2 class="movie-title" id="modalMovieTitle"></h2>
+                <p class="movie-description" id="modalMovieDescription"></p>
+                <div class="movie-info">
+                    <div class="info-item">
+                        <span class="info-label">上映時間:</span>
+                        <span class="info-value" id="modalMovieTime"></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">ジャンル:</span>
+                        <span class="info-value" id="modalMovieGenre"></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">公開日:</span>
+                        <span class="info-value" id="modalMovieDate"></span>
+                    </div>
+                </div>
+                <div class="movie-buttons">
+                    <button class="detail-btn" onclick="showMovieDetail()">詳細を見る</button>
+                    <button class="reserve-btn" onclick="reserveMovie()">予約する</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // 映画データ（後で追加・変更しやすいように配列で管理）
         const movies = [
-            { src: 'images/conanyoko.jpg', alt: '映画1' },
-            { src: 'images/tomyoko.jpg', alt: '映画2' },
-            { src: 'images/mikeyoko.jpg', alt: '映画3' },
-            { src: 'images/kakuyoko.jpg', alt: '映画4' },
-            { src: 'images/sinyoko.jpg', alt: '映画5' },
-            { src: 'images/utayoko.jpg', alt: '映画6' },
-            { src: 'images/tabeyoko.jpg', alt: '映画7' },
-            { src: 'images/oguyoko.jpg', alt: '映画8' },
-            { src: 'images/tomyoko.jpg', alt: '映画9' }
+            { 
+                src: 'images/conanyoko.jpg', 
+                alt: '映画1',
+                title: '名探偵コナン 黒鉄の魚影',
+                description: '黒の組織の謎に迫る、シリーズ最新作。コナンと仲間たちが新たな事件に挑む！',
+                time: '110分',
+                genre: 'ミステリー・アニメ',
+                date: '2024年4月14日'
+            },
+            { 
+                src: 'images/tomyoko.jpg', 
+                alt: '映画2',
+                title: 'トムとジェリー 大冒険',
+                description: 'おなじみのトムとジェリーが大スクリーンで大暴れ！笑いと感動の物語。',
+                time: '95分',
+                genre: 'アニメ・コメディ',
+                date: '2024年3月15日'
+            },
+            { 
+                src: 'images/mikeyoko.jpg', 
+                alt: '映画3',
+                title: 'モンスターズ・インク 新章',
+                description: 'マイクとサリーが帰ってきた！新しい仲間と共に繰り広げる冒険物語。',
+                time: '102分',
+                genre: 'アニメ・ファミリー',
+                date: '2024年5月20日'
+            },
+            { 
+                src: 'images/kakuyoko.jpg', 
+                alt: '映画4',
+                title: '角の物語',
+                description: '心温まる家族の絆を描いた感動作。涙なしでは見られない名作です。',
+                time: '128分',
+                genre: 'ドラマ・ファミリー',
+                date: '2024年2月10日'
+            },
+            { 
+                src: 'images/sinyoko.jpg', 
+                alt: '映画5',
+                title: '新世界への扉',
+                description: 'SF×アクションの超大作！未来への希望を描く壮大なスペクタクル。',
+                time: '145分',
+                genre: 'SF・アクション',
+                date: '2024年6月1日'
+            },
+            { 
+                src: 'images/utayoko.jpg', 
+                alt: '映画6',
+                title: '歌声の向こう側',
+                description: '音楽に込められた想いを描くミュージカル映画。心に響く美しい歌声。',
+                time: '118分',
+                genre: 'ミュージカル・ドラマ',
+                date: '2024年4月28日'
+            },
+            { 
+                src: 'images/tabeyoko.jpg', 
+                alt: '映画7',
+                title: '食べ物の冒険',
+                description: '料理を通じて人々を繋ぐ温かい物語。美味しそうな料理が次々と登場！',
+                time: '96分',
+                genre: 'コメディ・ファミリー',
+                date: '2024年3月22日'
+            },
+            { 
+                src: 'images/oguyoko.jpg', 
+                alt: '映画8',
+                title: 'オグの大冒険',
+                description: '小さな勇者オグが世界を救う！子供から大人まで楽しめる冒険活劇。',
+                time: '87分',
+                genre: 'アドベンチャー・アニメ',
+                date: '2024年5月5日'
+            },
+            { 
+                src: 'images/tomyoko.jpg', 
+                alt: '映画9',
+                title: 'トムとジェリー 夏の大作戦',
+                description: '夏をテーマにした特別編！海や山での大騒動が始まる。',
+                time: '88分',
+                genre: 'アニメ・コメディ',
+                date: '2024年7月15日'
+            }
         ];
 
         let currentIndex = 0;
@@ -680,7 +893,7 @@
             movies.forEach((movie, index) => {
                 const item = document.createElement('div');
                 item.className = 'carousel-item';
-                item.innerHTML = `<img src="${movie.src}" alt="${movie.alt}" width="400" height="300">`;
+                item.innerHTML = `<img src="${movie.src}" alt="${movie.alt}" width="400" height="300" onclick="openMovieModal(${index})">`;
                 container.appendChild(item);
             });
 
@@ -737,6 +950,35 @@
         document.querySelector('.carousel').addEventListener('mouseenter', stopAutoSlide);
         document.querySelector('.carousel').addEventListener('mouseleave', startAutoSlide);
         
+        // Movie Modal Functions
+        function openMovieModal(movieIndex) {
+            const movie = movies[movieIndex];
+            
+            document.getElementById('modalMovieImage').src = movie.src;
+            document.getElementById('modalMovieImage').alt = movie.alt;
+            document.getElementById('modalMovieTitle').textContent = movie.title;
+            document.getElementById('modalMovieDescription').textContent = movie.description;
+            document.getElementById('modalMovieTime').textContent = movie.time;
+            document.getElementById('modalMovieGenre').textContent = movie.genre;
+            document.getElementById('modalMovieDate').textContent = movie.date;
+            
+            document.getElementById('movieModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeMovieModal() {
+            document.getElementById('movieModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        function showMovieDetail() {
+            alert('映画の詳細ページに移動します。');
+        }
+        
+        function reserveMovie() {
+            alert('予約ページに移動します。');
+        }
+        
         // Help Modal Functions
         function openHelpModal() {
             document.getElementById('helpModal').style.display = 'block';
@@ -773,9 +1015,13 @@
         
         // Close modal when clicking outside
         window.onclick = function(event) {
-            const modal = document.getElementById('helpModal');
-            if (event.target === modal) {
+            const helpModal = document.getElementById('helpModal');
+            const movieModal = document.getElementById('movieModal');
+            if (event.target === helpModal) {
                 closeHelpModal();
+            }
+            if (event.target === movieModal) {
+                closeMovieModal();
             }
         }
         
@@ -783,6 +1029,7 @@
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 closeHelpModal();
+                closeMovieModal();
             }
         });
 
